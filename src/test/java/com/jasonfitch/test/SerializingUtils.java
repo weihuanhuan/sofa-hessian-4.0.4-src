@@ -29,10 +29,7 @@ public class SerializingUtils {
 
         Serializable copy = (Serializable) hin.readObject();
 
-        System.out.println();
-        System.out.println(serializable.toString());
-        System.out.println(copy.toString());
-        System.out.println("serializable.toString().equals(copy.toString()):" + serializable.toString().equals(copy.toString()));
+        compareResult(serializable, copy);
     }
 
     public static void testHessian2(Serializable serializable, ExternalizableSerializerFactory serializerFactory) throws IOException {
@@ -51,10 +48,20 @@ public class SerializingUtils {
 
         Serializable copy = (Serializable) h2in.readObject();
 
+        compareResult(serializable, copy);
+    }
+
+    public static void compareResult(Serializable serializable, Serializable copy) {
         System.out.println();
-        System.out.println(serializable.toString());
-        System.out.println(copy.toString());
-        System.out.println("serializable.toString().equals(copy.toString()):" + serializable.toString().equals(copy.toString()));
+        if (serializable == null || copy == null) {
+            System.out.println(serializable);
+            System.out.println(copy);
+            System.out.println("serializable == copy:" + (serializable == copy));
+        } else {
+            System.out.println(serializable.toString());
+            System.out.println(copy.toString());
+            System.out.println("serializable.toString().equals(copy.toString()):" + serializable.toString().equals(copy.toString()));
+        }
     }
 
 }

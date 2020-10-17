@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class TestObjectSerializable implements Serializable {
+
     private Throwable _value;
 
     public TestObjectSerializable() {
@@ -52,7 +53,22 @@ public class TestObjectSerializable implements Serializable {
     }
 
     public String toString() {
-        return getClass().getName() + "[" + _value + "$$$" + _value.getCause() + "]";
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getClass().getName());
+        sb.append("[");
+        if (_value == null) {
+            sb.append("_value==null");
+        } else {
+            sb.append(_value);
+            sb.append("$$$");
+            if (_value.getCause() == null) {
+                sb.append("_value.getCause()==null");
+            } else {
+                sb.append(_value.getCause());
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
 }

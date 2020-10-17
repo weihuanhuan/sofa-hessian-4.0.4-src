@@ -6,6 +6,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 public class TestObjectExternalizableTransient implements Externalizable {
+
     private transient Throwable _value;
 
     public TestObjectExternalizableTransient() {
@@ -66,7 +67,22 @@ public class TestObjectExternalizableTransient implements Externalizable {
     }
 
     public String toString() {
-        return getClass().getName() + "[" + _value + "$$$" + _value.getCause() + "]";
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getClass().getName());
+        sb.append("[");
+        if (_value == null) {
+            sb.append("_value==null");
+        } else {
+            sb.append(_value);
+            sb.append("$$$$");
+            if (_value.getCause() == null) {
+                sb.append("_value.getCause()==null");
+            } else {
+                sb.append(_value.getCause());
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
 }

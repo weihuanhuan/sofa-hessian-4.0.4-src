@@ -13,6 +13,10 @@ public class SerializingExternalizableTest {
     @Test()
     public void testAll() throws IOException {
         serializingExternalizableTest();
+
+        serializingExternalizableNullTest();
+
+        serializingNullTest();
     }
 
     @Test
@@ -23,5 +27,22 @@ public class SerializingExternalizableTest {
         SerializingUtils.testHessian(testObject, serializerFactory);
         SerializingUtils.testHessian2(testObject, serializerFactory);
     }
+
+    @Test
+    public void serializingExternalizableNullTest() throws IOException {
+        TestObjectExternalizableTransient testObject = new TestObjectExternalizableTransient(null);
+        ExternalizableSerializerFactory serializerFactory = new ExternalizableSerializerFactory();
+        SerializingUtils.testHessian(testObject, serializerFactory);
+        SerializingUtils.testHessian2(testObject, serializerFactory);
+    }
+
+    @Test
+    public void serializingNullTest() throws IOException {
+        TestObjectExternalizableTransient testObject = null;
+        ExternalizableSerializerFactory serializerFactory = new ExternalizableSerializerFactory();
+        SerializingUtils.testHessian(testObject, serializerFactory);
+        SerializingUtils.testHessian2(testObject, serializerFactory);
+    }
+
 
 }
