@@ -11,6 +11,13 @@ import java.io.Externalizable;
  */
 public class ExternalizableSerializerFactory extends SerializerFactory {
 
+    public ExternalizableSerializerFactory() {
+    }
+
+    public ExternalizableSerializerFactory(ClassLoader classLoader) {
+        super(classLoader);
+    }
+
     @Override
     protected Serializer loadSerializer(Class<?> cl) throws HessianProtocolException {
         return super.loadSerializer(cl);

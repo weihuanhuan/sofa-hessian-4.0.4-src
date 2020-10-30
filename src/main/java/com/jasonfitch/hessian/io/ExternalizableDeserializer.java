@@ -74,10 +74,11 @@ public class ExternalizableDeserializer extends AbstractDeserializer {
         }
 
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-             ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream)) {
+             ObjectInputStream objectInputStream = new ObjectInputStreamWithLoader(byteArrayInputStream)) {
             return objectInputStream.readObject();
         } catch (ClassNotFoundException e) {
             throw new IOException(String.format("Failed to deserializing a externalizable object for %s", clazz), e);
         }
     }
+
 }

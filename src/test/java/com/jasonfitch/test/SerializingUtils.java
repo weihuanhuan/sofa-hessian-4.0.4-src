@@ -4,16 +4,17 @@ import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
 import com.caucho.hessian.io.HessianInput;
 import com.caucho.hessian.io.HessianOutput;
-import com.jasonfitch.hessian.io.ExternalizableSerializerFactory;
+import com.caucho.hessian.io.SerializerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 public class SerializingUtils {
 
-    public static void testHessian(Serializable serializable, ExternalizableSerializerFactory serializerFactory) throws IOException {
+    public static void testHessian(Serializable serializable, SerializerFactory serializerFactory) throws IOException {
         System.out.println("############com.jasonfitch.test.SerializingUtils.testHessian################");
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         HessianOutput hout = new HessianOutput(bout);
@@ -32,7 +33,7 @@ public class SerializingUtils {
         compareResult(serializable, copy);
     }
 
-    public static void testHessian2(Serializable serializable, ExternalizableSerializerFactory serializerFactory) throws IOException {
+    public static void testHessian2(Serializable serializable, SerializerFactory serializerFactory) throws IOException {
         System.out.println("############com.jasonfitch.test.SerializingUtils.testHessian2################");
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         Hessian2Output h2out = new Hessian2Output(bout);
